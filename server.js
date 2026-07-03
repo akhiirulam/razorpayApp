@@ -2,14 +2,13 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { mongoConnect } from "./utils/dbConfig.js";
+import router from "./routes/routes.js";
 
 dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.get("/", (rea, res) => {
-  res.send("established");
-});
+app.use("/api", router);
 
 const PORT = process.env.PORT || 5500;
 
