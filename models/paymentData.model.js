@@ -13,6 +13,10 @@ const paymentSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  currency: {
+    type: String,
+    required: true,
+  },
   created_at: {
     type: Number,
     required: true,
