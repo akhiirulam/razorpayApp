@@ -37,9 +37,10 @@ const createUser = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
 
+  console.log(email, password);
   try {
     const findUser = await userData.findOne({ email });
-
+    console.log(findUser);
     if (findUser && (await bcrypt.compare(password, findUser.password))) {
       jwtTokenCreate(res, findUser.email);
       res.redirect("/api/user/userDashboard");
@@ -49,10 +50,19 @@ const login = async (req, res) => {
   }
 };
 
-const userDashboard = async (req, res) => {
-  res.send("User dashboard");
+const userDashboard = (req, res) => {
+  res.sendFile(process.cwd() + "/views/dashboard.html");
 };
 
-const logout = async (req, res) => {};
+const logout = async (req, res) => {
+  console.log("clear cookie");
+
+  res.cookie("jwt", "", {
+    httyOnly: true,
+    expires: new Date(0),
+  });
+
+  res.status(200).json({ message: "Logged out successfully" });
+};
 
 export { login, userDashboard, logout, createUser };

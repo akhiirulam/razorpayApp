@@ -4,14 +4,14 @@ import userData from "../models/user.model.js";
 export const protect = async (req, res, next) => {
   let token;
 
-  token = req.cookie.jwt;
+  token = req.cookies.jwt;
 
   if (token) {
     try {
       const verify = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = await userData.findOne(decode.email).select("-password");
+      req.user = await userData.findOne(verify.email).select("-password");
       next();
-      res.send(req.user);
+      // res.send(req.user);
     } catch (error) {
       res.status(401).json("jwt error", error);
     }

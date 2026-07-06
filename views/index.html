@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Authentication</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        width: 800px;
+        display: flex;
+        gap: 30px;
+      }
+
+      .card {
+        flex: 1;
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        cursor: pointer;
+        border: none;
+        background: #007bff;
+        color: white;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Register -->
+
+      <div class="card">
+        <h2>Register</h2>
+
+        <form action="/api/user/createUser" method="POST">
+          <input type="text" name="userName" placeholder="Username" required />
+
+          <input type="email" name="email" placeholder="Email" required />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+
+          <input
+            type="text"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            required
+          />
+
+          <button type="submit">Register</button>
+        </form>
+      </div>
+
+      <!-- Login -->
+
+      <div class="card">
+        <h2>Login</h2>
+
+        <form action="/api/user/login" method="POST">
+          <input type="email" name="email" placeholder="Email" required />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
